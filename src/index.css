@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+  max-width: 1850px;
+  margin: 0 auto;
+  font-family: 'Rejouice Headline';
+  background-color: #000319;
+  color: white;
+}
+
+#wrapper-canvas canvas {
+  max-width: 100%;
+ 
+}
+
+/* Hero Button Animation Start */
+.button {
+  /* in scss with just one variable i can change opacity with rgba(variable, opacity) but in css it's not possible so i have used three seperate variables */
+  /* with hue-rotate color can be changed */
+  --main-color: white;
+  --main-bg-color: rgb(4, 7, 29);
+  --pattern-color: rgba(255, 255, 255, 0.233);
+
+/* color: rgba(255, 255, 255, 0.712); */
+  /* change this rotation value */
+  filter: hue-rotate(0deg);
+
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  background: radial-gradient(
+      circle,
+      var(--main-bg-color) 0%,
+      rgba(0, 0, 0, 0) 95%
+    ),
+    linear-gradient(var(--pattern-color) 1px, transparent 1px),
+    linear-gradient(to right, var(--pattern-color) 1px, transparent 1px);
+  background-size:
+    cover,
+    12px 12px,
+    12px 12px;
+  background-position:
+    center center,
+    center center,
+    center center;
+  border-image: radial-gradient(
+      circle,
+      var(--main-color) 0%,
+      rgba(0, 0, 0, 0) 100%
+    )
+    1;
+  border-width: 1px 0 1px 0;
+  color: var(--main-color);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  font-size: 1.5rem;
+  transition: background-size 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-size:
+    cover,
+    10px 10px,
+    10px 10px;
+}
+.button:active {
+  filter: hue-rotate(250deg);
+
+}
+/* Hero Button Animation end */
+
+/* Model popup animation */
+@keyframes popup {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-popup {
+  animation: popup 0.5s ease-in-out forwards;
+  
+}
+/* Model popup animation end */
+
+
+@media (max-width: 1024px) {
+  .button{
+    padding: 0.8rem 1.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.3rem;
+  }
+ }
+ 
+@media (max-width: 768px) {
+  .button{
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2rem;
+  }
+ }
+
+ @media (max-width: 500px){
+    .mobile_img{
+      width: 300px;
+    }
+ }
