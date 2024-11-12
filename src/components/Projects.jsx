@@ -23,7 +23,7 @@ const Projects = () => {
     {
       id: 4,
       image: "/projects/project3 old portfolio.png",
-      link: "https://portfolioutkarsh.netlify.app/#portfolio",
+      link: "https://portfolioutkarshsrivastava.netlify.app/#portfolio",
       description: "My old portfolio showcasing previous small projects.",
     },
     {
