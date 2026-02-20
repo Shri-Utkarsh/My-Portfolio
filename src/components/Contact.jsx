@@ -34,9 +34,9 @@ const Contact = () => {
         <img
           src="/hacker png.png"
           alt=""
-          className="w-full h-full object-cover opacity-20 scale-110 blur-sm"
+          className="w-full h-full object-cover scale-110 blur-sm"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#000319] via-transparent to-[#000319]"></div>
+       
       </div>
 
       <div className="relative max-w-[800px] border border-white/10 bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl p-8 md:p-12 mx-auto">
