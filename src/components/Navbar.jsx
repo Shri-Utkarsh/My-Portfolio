@@ -1,82 +1,64 @@
 import React, { useEffect, useState } from "react";
 
 const Navbar = () => {
-    const [isVisible, setIsVisible] = useState(true);
-    const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
 
-    const handleScroll = () => {
-        const currentScrollPos = window.pageYOffset;
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
 
-        if (currentScrollPos > prevScrollPos && currentScrollPos > 100) {
-            setIsVisible(false);
-        }else {
-            setIsVisible(true);
-        }
-
-        setPrevScrollPos(currentScrollPos);
+    if (currentScrollPos > prevScrollPos && currentScrollPos > 100) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
     }
 
-    useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-    
-        return () => {
-          window.removeEventListener("scroll", handleScroll);
-        };
-      }, [prevScrollPos]);
+    setPrevScrollPos(currentScrollPos);
+  }
 
-// ----------------------------------------------------------------------------------------------------------
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
 
-const [activeLink, setActiveLink] = useState('home'); // Track the active link
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
 
-const handleLinkClick = (link) => {
-  setActiveLink(link); // Update the active link when a link is clicked
-};
+  // ----------------------------------------------------------------------------------------------------------
+
+  const [activeLink, setActiveLink] = useState('home'); // Track the active link
+
+  const handleLinkClick = (link) => {
+    setActiveLink(link); // Update the active link when a link is clicked
+  };
 
   return (
-    <nav className={`max-w-[1850px] fixed top-2 w-full z-50 flex justify-center transition-transform duration-300 ${
-      isVisible ? "translate-y-0" : "-translate-y-[8rem]"
-    }`}>
-      <div className="relative w-[300px] sm:w-[520px] h-[40px] sm:h-[50px] backdrop-blur-lg bg-[#0b0d29]/10 border border-[#181a38] rounded-lg flex justify-center items-center sm:gap-4 mt-3 p-1">
-        <a
-          href="#home"
-          className={`inline-block text-sm sm:text-2xl p-2 rounded-lg z-10 ${activeLink === 'home' ? 'bg-custom-gradient' : ''}`}
-          onClick={() => handleLinkClick('home')}
-        >
-          Home
-        </a>
-        <a
-          href="#about"
-          className={`inline-block text-sm sm:text-2xl p-2 rounded-lg z-10 ${activeLink === 'about' ? 'bg-custom-gradient' : ''}`}
-          onClick={() => handleLinkClick('about')}
-        >
-          About
-        </a>
-        <a
-          href="#skills"
-          className={`inline-block text-sm sm:text-2xl p-2 rounded-lg z-10 ${activeLink === 'skills' ? 'bg-custom-gradient' : ''}`}
-          onClick={() => handleLinkClick('skills')}
-        >
-          Service
-        </a>
-        <a
-          href="#projects"
-          className={`inline-block text-sm sm:text-2xl p-2 rounded-lg z-10 ${activeLink === 'projects' ? 'bg-custom-gradient' : ''}`}
-          onClick={() => handleLinkClick('projects')}
-        >
-          Projects
-        </a>
-        <a
-          href="#contact"
-          className={`inline-block text-sm sm:text-2xl p-2 rounded-lg z-10 ${activeLink === 'contact' ? 'bg-custom-gradient' : ''}`}
-          onClick={() => handleLinkClick('contact')}
-        >
-          Contact
-        </a>
-      
+    <nav className={`fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[600px] z-50 transition-all duration-500 ease-in-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10 pointer-events-none"
+      }`}>
+      <div className="backdrop-blur-xl bg-black/20 border border-white/10 rounded-2xl flex justify-around items-center p-2 shadow-2xl">
+        {[
+          { id: 'home', label: 'Home' },
+          { id: 'about', label: 'About' },
+          { id: 'skills', label: 'Service' },
+          { id: 'projects', label: 'Projects' },
+          { id: 'contact', label: 'Contact' }
+        ].map((link) => (
+          <a
+            key={link.id}
+            href={`#${link.id}`}
+            className={`px-4 py-2 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 ${activeLink === link.id
+                ? 'bg-[#19BBC9] text-white shadow-lg shadow-[#19BBC9]/30'
+                : 'text-white/70 hover:text-white hover:bg-white/5'
+              }`}
+            onClick={() => handleLinkClick(link.id)}
+          >
+            {link.label}
+          </a>
+        ))}
       </div>
     </nav>
 
-    
+
   );
 };
 

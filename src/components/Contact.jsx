@@ -29,61 +29,82 @@ const Contact = () => {
   };
 
   return (
-    <div className="relative overflow-hidden my-10" id="contact">
-      <img
-        src="/hacker png.png"
-        alt=""
-        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
-      />
-      <div className="relative max-w-[1200px] bg-[#20292C]/30 backdrop-blur-md rounded-2xl shadow-lg p-8 mx-auto flex flex-col justify-center items-center my-24">
-        <h1 className="text-4xl text-center text-[#19BBC9] my-6 ">Let's Connect</h1>
+    <div className="relative overflow-hidden py-24" id="contact">
+      <div className="absolute inset-0 -z-10">
+        <img
+          src="/hacker png.png"
+          alt=""
+          className="w-full h-full object-cover opacity-20 scale-110 blur-sm"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#000319] via-transparent to-[#000319]"></div>
+      </div>
+
+      <div className="relative max-w-[800px] border border-white/10 bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl p-8 md:p-12 mx-auto">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-[#19BBC9] mb-4 tracking-tight">Let's Connect</h1>
+        <p className="text-white/60 text-center mb-10 max-w-md mx-auto">
+          Currently looking for new opportunities. My inbox is always open. Whether you have a question or just want to say hi!
+        </p>
+
         {/* Social Media Icons */}
-        <div className="flex justify-center gap-6 text-3xl">
-          <a href="https://www.instagram.com/utkarshsrivastava1422/profilecard/?igsh=MTFvMWpyamp2cnkyaA%3D%3D" target="blank" className="hover:text-[#19BBC9] transition-all duration-300 hover:scale-125"><FaInstagram /></a>
-          <a href="https://www.linkedin.com/in/utkarsh-srivastava-1749b828b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="blank" className="hover:text-[#19BBC9] transition-all duration-300 hover:scale-125"><FaLinkedinIn /></a>
-          <a href="https://github.com/Shri-Utkarsh" target="blank" className="hover:text-[#19BBC9] transition-all duration-300 hover:scale-125"><FaGithub /></a>
-          <a href="mailto:utkarshsrivastava1422@gmail.com" target="blank" className="hover:text-[#19BBC9] transition-all duration-300 hover:scale-125"><BiLogoGmail /></a>
+        <div className="flex justify-center gap-8 text-3xl mb-12">
+          {[
+            { icon: <FaInstagram />, href: "https://www.instagram.com/utkarshsrivastava1422/profilecard/?igsh=MTFvMWpyamp2cnkyaA%3D%3D" },
+            { icon: <FaLinkedinIn />, href: "https://www.linkedin.com/in/utkarsh-srivastava-1749b828b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+            { icon: <FaGithub />, href: "https://github.com/Shri-Utkarsh" },
+            { icon: <BiLogoGmail />, href: "mailto:utkarshsrivastava1422@gmail.com" }
+          ].map((social, i) => (
+            <a
+              key={i}
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+              className="text-white/70 hover:text-[#19BBC9] transition-all duration-300 hover:scale-125"
+            >
+              {social.icon}
+            </a>
+          ))}
         </div>
+
         {/* Form */}
-        <div className="my-8 max-w-[900px] w-full"> {/* Added w-full here */}
-          <form
-            onSubmit={onSubmit}
-            className="flex flex-col items-center"
-          >
+        <form onSubmit={onSubmit} className="flex flex-col gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder="Your Name"
               required
-              className="bg-[#3b494f50] w-full mb-4 p-2 rounded" // Ensure full width
+              className="bg-white/5 border border-white/10 w-full p-4 rounded-xl focus:outline-none focus:border-[#19BBC9] transition-colors"
             />
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder="Your Email"
               required
-              className="bg-[#3b494f50] w-full mb-4 p-2 rounded" // Ensure full width
+              className="bg-white/5 border border-white/10 w-full p-4 rounded-xl focus:outline-none focus:border-[#19BBC9] transition-colors"
             />
-            <textarea
-              name="message"
-              placeholder="Message"
-              rows="4"
-              required
-              className="bg-[#3b494f50] w-full mb-4 p-2 rounded" // Ensure full width
-            ></textarea>
-            <button
-              type="submit"
-              className="bg-custom-gradient p-2 rounded w-32" // You can keep this width
-            >
-              Submit Form
-            </button>
-          </form>
-          <span>{result}</span>
-        </div>
+          </div>
+          <textarea
+            name="message"
+            placeholder="Message"
+            rows="5"
+            required
+            className="bg-white/5 border border-white/10 w-full p-4 rounded-xl focus:outline-none focus:border-[#19BBC9] transition-colors resize-none"
+          ></textarea>
+          <button
+            type="submit"
+            className="bg-[#19BBC9] hover:bg-[#15aab9] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg shadow-[#19BBC9]/20 flex items-center justify-center gap-2 group"
+          >
+            Send Message
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+            </svg>
+          </button>
+          <span className="text-center mt-4 text-[#19BBC9] font-medium">{result}</span>
+        </form>
       </div>
     </div>
   );
-  
+
 };
 
 export default Contact;
